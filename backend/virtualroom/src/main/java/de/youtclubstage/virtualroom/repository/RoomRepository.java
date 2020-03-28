@@ -8,5 +8,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.UUID;
 
 public interface RoomRepository extends MongoRepository<Room, UUID> {
-    Page<Room> findAllByNameContaining(String search, Pageable pageable);
+    Page<Room> findAllByNameContainingIgnoreCase(String search, Pageable pageable);
 }

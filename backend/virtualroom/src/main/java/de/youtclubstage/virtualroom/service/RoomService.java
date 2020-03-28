@@ -2,7 +2,6 @@ package de.youtclubstage.virtualroom.service;
 
 import de.youtclubstage.virtualroom.entity.Room;
 import de.youtclubstage.virtualroom.repository.RoomRepository;
-import org.graalvm.compiler.serviceprovider.ServiceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,7 +25,7 @@ public class RoomService {
         if(search==null){
             return roomRepository.findAll(pageable);
         }else{
-            return roomRepository.findAllByNameContaining(search,pageable);
+            return roomRepository.findAllByNameContainingIgnoreCase(search,pageable);
         }
     }
 
