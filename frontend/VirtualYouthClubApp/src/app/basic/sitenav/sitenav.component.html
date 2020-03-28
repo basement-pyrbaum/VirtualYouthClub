@@ -1,0 +1,20 @@
+<div id="results" class="card mx-auto" >
+    <div class="card-header">
+        <div class="search">
+            <div id="searchpos">
+                <fa-icon [icon]="faSearch"></fa-icon>
+            </div>
+            <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Search" id="search" name="search" (keyup.enter)="search()">
+        </div>
+        <div style="padding-top: 10px;">
+           <a><fa-icon [icon]="faPlus"></fa-icon> &nbsp; Raum anlegen</a> 
+        </div>
+        
+    </div>
+</div>
+<ul class="list-group">
+    <a *ngFor="let room of rooms" href="room/{{room.id}}">
+        <li class="list-group-item">{{room.name}}</li>
+    </a>
+    
+</ul>

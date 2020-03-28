@@ -1,4 +1,9 @@
-<h1>
-    Welcome to {{title}}!
+<div class="card mx-auto" style="height: 100%; width:  max-content;;">
+  <div class="card-header">
+    <h1>
+     Chat {{roomName}}
   </h1>
-<div id="meet"></div>
+</div>
+
+<div #meet class="card-body mx-center" id="meet" style="width: max-content;"><p *ngIf="!isInit"> Video wird initalisiert...</p></div>
+</div>

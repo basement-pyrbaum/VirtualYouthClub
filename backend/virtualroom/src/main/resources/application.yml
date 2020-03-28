@@ -1,0 +1,35 @@
+spring:
+  profiles: default
+  data:
+    mongodb:
+      host: localhost
+      #password: example
+      port: 27017
+      repositories:
+        enabled: true
+      #username: root
+      database: invoice
+  security:
+    basic:
+      enabled: false
+    oauth2:
+      client:
+        client-id: virtualrooms
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://auth.youthclubstage.de/auth/realms/ycspublic/protocol/openid-connect/certs
+management:
+  endpoint:
+    health:
+      show-details: always
+cors:
+  allowedOrigins: '*'
+  allowedHeaders:
+    - Authorization
+    - Content-Type
+  exposedHeaders:
+    - Authorization
+    - Content-Type
+logging:
+  level:
+    org.springframework.security.oauth2: DEBUG

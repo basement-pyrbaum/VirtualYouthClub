@@ -1,9 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
-
-<app-menu></app-menu>
-<div class="mx-auto mainframe" style="max-width: 800px;">
-  <router-outlet></router-outlet>
+<div class="context" *ngIf="login">
+  <app-menu></app-menu>
+  <div>
+    <div class="sitenav box">
+      <app-sitenav id=search></app-sitenav>
+    </div>
+    <div class="mainsite box">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-
-
-
+</div>
