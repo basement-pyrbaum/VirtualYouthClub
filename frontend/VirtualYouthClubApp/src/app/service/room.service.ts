@@ -22,4 +22,13 @@ export class RoomService {
   getRoom(uuid: String): Observable<Room> {
     return this.http.get<Room>(environment.backendUrl+"/rooms/"+uuid)
   }
+
+  addRoom(name: String): Observable<void> {
+    return this.http.post<void>(environment.backendUrl+"/rooms",name)
+  }
+
+  hasCreatePermission(): Observable<boolean> {
+    return this.http.get<boolean>(environment.backendUrl+"/permission/add/rooms")
+  }
+
 }

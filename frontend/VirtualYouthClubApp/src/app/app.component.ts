@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { OAuthService, JwksValidationHandler, AuthConfig } from 'angular-oauth2-oidc';
+import { StateService } from './service/state.service';
 
 
 
@@ -11,14 +12,16 @@ import { OAuthService, JwksValidationHandler, AuthConfig } from 'angular-oauth2-
 export class AppComponent {
 
   login = false;
+  open = false;
 
-  constructor(private oauthService: OAuthService) {
+  constructor(private oauthService: OAuthService,private stateService:StateService) {
     this.oauthService.configure(this.getConfig());
 
     this.oauthService.tryLogin().then(x =>    {if(!this.oauthService.hasValidAccessToken()){
       this.oauthService.initImplicitFlow();
     }else{
       this.login = true;
+      stateService.isOpenOrAdmin().subscribe( open => this.open = open);
     }});
 
 

@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="context" *ngIf="login">
+<div class="context" *ngIf="login && open">
   <app-menu></app-menu>
   <div>
     <div class="sitenav box">
@@ -7,6 +7,20 @@
     </div>
     <div class="mainsite box">
       <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<div class="context" *ngIf="login && !open">
+  <div class="card mx-auto" style="max-width: 800px;">
+    <div class="card-header">
+      <h1>
+        Virtuelle Jugentreff geschlossen
+      </h1>
+    </div>
+
+    <div class="card-body">
+        Zurzeit ist der Jugentreff geschlossen.
     </div>
   </div>
 </div>

@@ -32,4 +32,5 @@ cors:
     - Content-Type
 logging:
   level:
+    root: WARN
     org.springframework.security.oauth2: DEBUG

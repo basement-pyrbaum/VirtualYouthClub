@@ -6,13 +6,37 @@
             </div>
             <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Search" id="search" name="search" (keyup.enter)="search()">
         </div>
-        <div style="padding-top: 10px;">
-           <a><fa-icon [icon]="faPlus"></fa-icon> &nbsp; Raum anlegen</a> 
+        <div style="padding-top: 10px;" *ngIf="hasPermission">
+           <a href="javascript:void(0);" (click)="showRoom()"><fa-icon [icon]="faPlus"></fa-icon> &nbsp; Raum anlegen</a> 
         </div>
         
     </div>
 </div>
-<ul class="list-group">
+
+<div id="add" class="card mx-auto" *ngIf="edit" >
+    <div class="card-header">
+        <div class="room">
+            <label for="addRoom">Raum erstellen</label>
+            <input [(ngModel)]="createRoom" type="text" class="form-control" placeholder="Raum23" id="addRoom" name="search" (keyup.enter)="addRoom()">
+        </div>
+    </div>
+</div>
+
+
+<div id="admin" class="card mx-auto" *ngIf="admin">
+    <div class="card-header">
+        <div class="custom-control custom-switch">
+            <input (click)="changeState()" type="checkbox" class="custom-control-input" id="customSwitches">
+            <label class="custom-control-label" for="customSwitches">Jugentreff {{ycstate}}</label>
+          </div>
+    </div>
+</div>
+
+
+
+
+
+<ul class="list-group" >
     <a *ngFor="let room of rooms" href="room/{{room.id}}">
         <li class="list-group-item">{{room.name}}</li>
     </a>
