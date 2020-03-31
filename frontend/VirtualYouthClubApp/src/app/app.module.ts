@@ -14,6 +14,9 @@ import { SitenavComponent } from './basic/sitenav/sitenav.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ChatComponent } from './basic/chat/chat.component';
 import { StartComponent } from './site/start/start.component';
+import { ImpressumComponent } from './site/impressum/impressum.component';
+import { DatenschutzComponent } from './site/datenschutz/datenschutz.component';
+import { ClosedComponent } from './site/closed/closed.component';
 
 
 @NgModule({
@@ -24,7 +27,10 @@ import { StartComponent } from './site/start/start.component';
     RoomComponent,
     SitenavComponent,
     ChatComponent,
-    StartComponent
+    StartComponent,
+    ImpressumComponent,
+    DatenschutzComponent,
+    ClosedComponent
   ],
   imports: [
     OAuthModule.forRoot({

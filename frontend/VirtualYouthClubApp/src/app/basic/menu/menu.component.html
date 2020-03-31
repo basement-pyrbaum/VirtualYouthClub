@@ -1,5 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="#" style="padding-top: 0px;padding-bottom: 0px">Virtueller JugendTreff</a>
+    <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"  aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02" id="navbarColor02" [ngbCollapse]="!isCollapsed" >
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/impressum">Impressum <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/datenschutz">Datenschutz <span class="sr-only">(current)</span></a>
+      </ul>
+    </div>
   
     
 
