@@ -35,7 +35,7 @@ import { ClosedComponent } from './site/closed/closed.component';
   imports: [
     OAuthModule.forRoot({
       resourceServer: {
-          allowedUrls: ['http://localhost:8080'],
+          allowedUrls: ["/api"],
           sendAccessToken: true
       }}),
       NgbModule,

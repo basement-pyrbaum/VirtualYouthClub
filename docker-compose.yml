@@ -1,0 +1,55 @@
+version: '3'
+services:
+    mongo:
+        image: mongo
+        restart: always
+        environment:
+            #MONGO_INITDB_ROOT_USERNAME: root
+            #MONGO_INITDB_ROOT_PASSWORD: example
+            MONGO_INITDB_DATABASE: virtualyouthclub
+        volumes:
+            - ./data/db:/data/db
+        networks:
+            virtualyouthclub:
+              aliases:
+                - mongodb
+    backend:
+        image: youthclubstage/virtualyouthclubservice:latest
+        restart: always
+        build:
+            context: ./backend/virtualyouthclub
+            dockerfile: DockerFile
+        environment:
+            MONGO_HOST: mongodb
+            MONGO_DB: virtualyouthclub
+            #MONGO_USER: root
+            #MONGO_PASSWORD: example
+        networks:
+            virtualyouthclub:
+              aliases:
+                - backend
+    frontend:
+        image: youthclubstage/virtualyouthclubapp:latest
+        restart: always
+        build:
+            context: ./frontend/VirtualYouthClubApp
+            dockerfile: DockerFile
+        networks:
+            virtualyouthclub:
+              aliases:
+                - frontend
+    gateway:
+        image: nginx:latest
+        ports: 
+            - 80:80
+        volumes:
+            - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+        networks:
+            virtualyouthclub:
+              aliases:
+                - gateway
+    
+
+# Custom network so all services can communicate using a FQDN
+networks:
+    virtualyouthclub:
