@@ -11,6 +11,7 @@ import { StateService } from './service/state.service';
 })
 export class AppComponent {
 
+  public isCollapsed = true;
   login = false;
   open = false;
 

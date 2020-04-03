@@ -17,6 +17,7 @@ import { StartComponent } from './site/start/start.component';
 import { ImpressumComponent } from './site/impressum/impressum.component';
 import { DatenschutzComponent } from './site/datenschutz/datenschutz.component';
 import { ClosedComponent } from './site/closed/closed.component';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { ClosedComponent } from './site/closed/closed.component';
   imports: [
     OAuthModule.forRoot({
       resourceServer: {
-          allowedUrls: ["/api"],
+          allowedUrls: [environment.backendUrl],
           sendAccessToken: true
       }}),
       NgbModule,

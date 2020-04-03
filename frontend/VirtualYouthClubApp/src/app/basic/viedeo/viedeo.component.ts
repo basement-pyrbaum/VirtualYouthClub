@@ -43,10 +43,23 @@ export class ViedeoComponent implements OnInit {
   }
 
   initJitsi(roomName) :void {
+    var height;
+    var width;
+    var isWidthGreater = ((this.elementView.nativeElement.width/4*3) > this.elementView.nativeElement.offsetHeight);
+    if(isWidthGreater){
+      height = this.elementView.nativeElement.offsetHeight;
+      width = this.elementView.nativeElement.offsetHeight/3*4;
+    }else{
+      width = this.elementView.nativeElement.width;
+      height = this.elementView.nativeElement.width/4*3;
+    }
+
+
     this.roomName = roomName;
     this.options = {
       roomName: "ycs"+roomName,
-      width: this.elementView.nativeElement.offsetHeight,
+      width: '100%',
+      height: '100%',
       jwt: this.oauthService.getAccessToken(),
       parentNode: document.querySelector('#meet'),
       interfaceConfigOverwrite: {
