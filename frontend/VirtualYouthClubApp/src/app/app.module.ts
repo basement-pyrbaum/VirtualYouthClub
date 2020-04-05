@@ -18,6 +18,7 @@ import { ImpressumComponent } from './site/impressum/impressum.component';
 import { DatenschutzComponent } from './site/datenschutz/datenschutz.component';
 import { ClosedComponent } from './site/closed/closed.component';
 import { environment } from 'src/environments/environment';
+import { CookiebannerComponent } from './basic/cookiebanner/cookiebanner.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { environment } from 'src/environments/environment';
     StartComponent,
     ImpressumComponent,
     DatenschutzComponent,
-    ClosedComponent
+    ClosedComponent,
+    CookiebannerComponent
   ],
   imports: [
     OAuthModule.forRoot({

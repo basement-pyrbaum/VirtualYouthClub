@@ -2,16 +2,16 @@
 <div class="context">
   <app-menu></app-menu>
   <div class="container-fluid p-0" *ngIf="login">
-    <div class="row no-gutters p-0 d-md-none " >
+    <div class="row no-gutters p-0 d-md-none ">
       <div class="mainsite box col p-0">
-          <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
-                  [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" style="width: 100%;">
-            <span *ngIf="isCollapsed">Raumauswahl öfnnen</span>
-            <span *ngIf="!isCollapsed">Raumauswahl schließen</span>
-          </button>
+        <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" style="width: 100%;">
+          <span *ngIf="isCollapsed">Raumauswahl öfnnen</span>
+          <span *ngIf="!isCollapsed">Raumauswahl schließen</span>
+        </button>
       </div>
     </div>
-    <div class="row no-gutters p-0 d-md-none " >
+    <div class="row no-gutters p-0 d-md-none ">
       <div class="mainsite box col p-0" [ngbCollapse]="isCollapsed">
         <app-sitenav id=search></app-sitenav>
       </div>
@@ -25,4 +25,6 @@
       </div>
     </div>
   </div>
+<app-cookiebanner></app-cookiebanner>
+
 </div>
