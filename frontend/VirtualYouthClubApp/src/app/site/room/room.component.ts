@@ -9,6 +9,8 @@ import { RoomService } from 'src/app/service/room.service';
 })
 export class RoomComponent implements OnInit {
 
+  public isCollapsed = false;
+  isStartRoom = true;
   room = "";
 
   constructor(private route: ActivatedRoute,
@@ -16,7 +18,12 @@ export class RoomComponent implements OnInit {
     private roomService: RoomService) { }
 
   ngOnInit(): void {
-    this.room = this.route.snapshot.paramMap.get('id'); 
+    var currentRoom = this.route.snapshot.paramMap.get('id'); 
+    if(currentRoom != "start"){
+      this.room = currentRoom;
+      this.isStartRoom = false;
+      this.isCollapsed = true;
+    } 
   }
 
 }

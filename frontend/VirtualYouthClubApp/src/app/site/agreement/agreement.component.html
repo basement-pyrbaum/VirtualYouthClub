@@ -1,0 +1,25 @@
+<div class="context p-2" style="width: 100%;">
+    <div class="card-header ">
+        <h1>
+            Vorrausetztungen
+        </h1>
+    </div>
+    <div class="card mx-auto">
+        <div class="card-body">
+            Vorrausetztungen für den Zutritt
+            <ul>
+                <li>Ich bin zwischen 12-18 Jahren</li>
+                <li>Ich habe die Verhaltensregeln gelesen und werde mich daran halten</li>
+            </ul>
+
+            <div class="form-check">
+                <input [(ngModel)]="agreementcb" type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Ich bestätige hiermit, das ich die Vorrausetztungen
+                    erfülle. </label>
+            </div>
+            <br/>
+            <button [disabled]="!agreementcb" class="btn btn-primary" (click)="agreement()">Weiter</button>
+
+        </div>
+    </div>
+</div>

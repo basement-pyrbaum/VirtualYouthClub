@@ -1,5 +1,9 @@
 package de.youtclubstage.virtualyouthclub.controller;
 
+import de.youtclubstage.virtualyouthclub.controller.model.StateDto;
+import de.youtclubstage.virtualyouthclub.entity.Agreement;
+import de.youtclubstage.virtualyouthclub.service.AgreementService;
+import de.youtclubstage.virtualyouthclub.service.CheckService;
 import de.youtclubstage.virtualyouthclub.service.StateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -15,12 +19,15 @@ import java.util.List;
 @RequestMapping("/api")
 public class StateController {
     private final StateService stateService;
+    private final CheckService checkService;
+    private final AgreementService agreementService;
 
-    public static final String USER_ROLE = "user";
-    public static final String ADMIN_ROLE = "admin";
-
-    public StateController(StateService stateService){
+    public StateController(StateService stateService,
+                           CheckService checkService,
+                           AgreementService agreementService){
         this.stateService = stateService;
+        this.checkService = checkService;
+        this.agreementService = agreementService;
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/state",produces = "application/json")
@@ -28,38 +35,30 @@ public class StateController {
         return ResponseEntity.ok(stateService.isOpen());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/stateoradmin",produces = "application/json")
-    ResponseEntity<Boolean> isOpenOrAdmin(){
-        return ResponseEntity.ok(stateService.isOpen()||hasRole(ADMIN_ROLE));
+    @RequestMapping(method = RequestMethod.GET, value="/extendedState",produces = "application/json")
+    ResponseEntity<StateDto> isOpenOrAdmin(){
+        return ResponseEntity.ok(new StateDto(checkService.getState()));
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/admin",produces = "application/json")
     ResponseEntity<Boolean> Admin(){
-        return ResponseEntity.ok(hasRole(ADMIN_ROLE));
+        return ResponseEntity.ok(checkService.isAdmin());
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value="/agreement")
+    ResponseEntity<Void> setAgreement(){
+        agreementService.createAgreement();
+        return ResponseEntity.ok().build();
     }
 
 
     @RequestMapping(method = RequestMethod.POST, value="/state")
     ResponseEntity<Void> isOpen(@RequestBody boolean open){
-        if(!hasRole(ADMIN_ROLE)){
+        if(!checkService.isAdmin()){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
         stateService.setOpen(open);
         return ResponseEntity.ok().build();
     }
-
-
-    public boolean hasRole(String role){
-        Jwt jwt = (Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<String> roles = jwt.getClaimAsStringList("groups");
-        if(roles != null && roles.contains(role)){
-            return true;
-        }
-        if(roles != null){
-            log.error(roles.toString());
-        }
-        return false;
-    }
-
 
 }

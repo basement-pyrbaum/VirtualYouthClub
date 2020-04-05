@@ -1,0 +1,2 @@
+<a class="nav-link" (click)="login()" *ngIf="!isLogin">Login<span class="sr-only">(current)</span></a>
+<a class="nav-link" (click)="logout()" *ngIf="isLogin">Logout({{name}})<span class="sr-only">(current)</span></a>

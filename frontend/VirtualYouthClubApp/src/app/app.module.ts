@@ -19,6 +19,9 @@ import { DatenschutzComponent } from './site/datenschutz/datenschutz.component';
 import { ClosedComponent } from './site/closed/closed.component';
 import { environment } from 'src/environments/environment';
 import { CookiebannerComponent } from './basic/cookiebanner/cookiebanner.component';
+import { LoginLogoutComponent } from './basic/login-logout/login-logout.component';
+import { ErrorComponent } from './site/error/error.component';
+import { AgreementComponent } from './site/agreement/agreement.component';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import { CookiebannerComponent } from './basic/cookiebanner/cookiebanner.compone
     ImpressumComponent,
     DatenschutzComponent,
     ClosedComponent,
-    CookiebannerComponent
+    CookiebannerComponent,
+    LoginLogoutComponent,
+    ErrorComponent,
+    AgreementComponent
   ],
   imports: [
     OAuthModule.forRoot({

@@ -12,20 +12,16 @@ import { StateService } from './service/state.service';
 })
 export class AppComponent {
 
-
-  public isCollapsed = true;
-  login = false;
+  trylogin = false;
   open = false;
 
   constructor(private oauthService: OAuthService,private stateService:StateService) {
     this.oauthService.configure(this.getConfig());
 
-    this.oauthService.tryLogin().then(x =>    {if(!this.oauthService.hasValidAccessToken()){
-      this.oauthService.initImplicitFlow();
-    }else{
-      this.login = true;
-      stateService.isOpenOrAdmin().subscribe( open => this.open = open);
-    }});
+    this.oauthService.tryLogin().then(x =>{
+      this.trylogin = true;
+    });
+    this.oauthService.setupAutomaticSilentRefresh();
 
 
     // Load Discovery Document and then try to login the user

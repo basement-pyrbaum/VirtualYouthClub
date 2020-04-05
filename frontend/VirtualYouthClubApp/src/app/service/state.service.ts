@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { State } from '../model/state';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,8 @@ export class StateService {
 
   constructor(private http: HttpClient) { }
 
-  isOpenOrAdmin(): Observable<boolean> {
-    return this.http.get<boolean>(environment.backendUrl+"/stateoradmin")
+  extendedstate(): Observable<State> {
+    return this.http.get<State>(environment.backendUrl+"/extendedState")
   }
 
   isOpen(): Observable<boolean> {
@@ -26,6 +27,11 @@ export class StateService {
   setOpen(open: boolean): Observable<void> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
     return this.http.post<void>(environment.backendUrl+"/state",open,{headers: headers})
+  }
+
+  agreement(): Observable<void> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post<void>(environment.backendUrl+"/agreement","",{headers: headers})
   }
 
 
