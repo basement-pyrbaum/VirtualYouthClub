@@ -22,6 +22,8 @@ import { CookiebannerComponent } from './basic/cookiebanner/cookiebanner.compone
 import { LoginLogoutComponent } from './basic/login-logout/login-logout.component';
 import { ErrorComponent } from './site/error/error.component';
 import { AgreementComponent } from './site/agreement/agreement.component';
+import { KniggeComponent } from './site/knigge/knigge.component';
+import { KniggeTextComponent } from './basic/knigge-text/knigge-text.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { AgreementComponent } from './site/agreement/agreement.component';
     CookiebannerComponent,
     LoginLogoutComponent,
     ErrorComponent,
-    AgreementComponent
+    AgreementComponent,
+    KniggeComponent,
+    KniggeTextComponent
   ],
   imports: [
     OAuthModule.forRoot({

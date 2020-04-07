@@ -9,6 +9,7 @@ import { OpenGuardService } from './guard/open-guard.service';
 import { ClosedComponent } from './site/closed/closed.component';
 import { ErrorComponent } from './site/error/error.component';
 import { AgreementComponent } from './site/agreement/agreement.component';
+import { KniggeComponent } from './site/knigge/knigge.component';
 
 
 const routes: Routes = [  
@@ -16,6 +17,7 @@ const routes: Routes = [
 { path: 'datenschutz', component:  DatenschutzComponent},
 { path: 'impressum', component:  ImpressumComponent},
 { path: 'closed', component:  ClosedComponent},
+{ path: 'knigge', component:  KniggeComponent},
 { path: 'error', component:  ErrorComponent},
 { path: 'agreement', component:  AgreementComponent},
 { path: 'room/:id', component:  RoomComponent, canActivate: [OpenGuardService] },
