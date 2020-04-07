@@ -36,13 +36,14 @@ export class SitenavComponent implements OnInit {
     stateService.isAdmin().subscribe(x => this.admin = x)
   }
 
-  refreshState(){
+   refreshState(){
     this.stateService.isOpen().subscribe( x => {
       this.stateChanged(x);
     })
   }
 
-  stateChanged(x){
+  stateChanged(x : boolean){
+    console.log(x);
     this.state = x;
     this.ycstate = x ? "geöffnet" : "geschlossen";
   }
@@ -51,7 +52,7 @@ export class SitenavComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  search():void{
+  searchfunc():void{
     this.roomService.getRooms(0,10,this.searchText).subscribe( data => {
       this.rooms = data;
    })
@@ -66,7 +67,7 @@ export class SitenavComponent implements OnInit {
   }
 
   addRoom():void{
-    this.roomService.addRoom(this.createRoom).subscribe( r => {this.search()})
+    this.roomService.addRoom(this.createRoom).subscribe( r => {this.searchfunc()})
     this.createRoom = "";
     this.edit = false;
 

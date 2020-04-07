@@ -4,7 +4,7 @@
             <div id="searchpos">
                 <fa-icon [icon]="faSearch"></fa-icon>
             </div>
-            <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Search" id="search" name="search" (keyup.enter)="search()">
+            <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Search" id="searchInput" name="search" (keyup.enter)="searchfunc()">
         </div>
         <div style="padding-top: 10px;" *ngIf="hasPermission">
            <a href="javascript:void(0);" (click)="showRoom()"><fa-icon [icon]="faPlus"></fa-icon> &nbsp; Raum anlegen</a> 
@@ -17,7 +17,7 @@
     <div class="card-header">
         <div class="room">
             <label for="addRoom">Raum erstellen</label>
-            <input [(ngModel)]="createRoom" type="text" class="form-control" placeholder="Raum23" id="addRoom" name="search" (keyup.enter)="addRoom()">
+            <input [(ngModel)]="createRoom" type="text" class="form-control" placeholder="Raum23" id="addRoom" name="addRoom" (keyup.enter)="addRoom()">
         </div>
     </div>
 </div>
@@ -25,10 +25,13 @@
 
 <div id="admin" class="card mx-auto" *ngIf="admin">
     <div class="card-header">
-        <div class="custom-control custom-switch">
-            <input (click)="changeState()" type="checkbox" class="custom-control-input" id="customSwitches">
+        <button (click)="changeState()" *ngIf="state" type="button" class="btn btn-success" style="width: 100%;">Geöffnet</button>
+        <button (click)="changeState()" *ngIf="!state" type="button" class="btn btn-danger" style="width: 100%;">Geschlossen</button>
+
+<!--<div class="custom-control custom-switch">
+            <input (click)="changeState()"  type="checkbox" class="xcustom-control-input" id="customSwitches">
             <label class="custom-control-label" for="customSwitches">Jugentreff {{ycstate}}</label>
-          </div>
+          </div>-->
     </div>
 </div>
 
