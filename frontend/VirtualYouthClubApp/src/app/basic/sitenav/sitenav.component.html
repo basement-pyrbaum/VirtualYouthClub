@@ -59,10 +59,25 @@
                 <a href="room/{{room.id}}" style="width: 75%;">
                         {{room.name}}
                 </a>
-                <a (click)="deleteRoom(room.id)" style="width: 25%; text-align: right;">
+                <a (click)="deleteRoom(content,room.id,room.name)" style="width: 25%; text-align: right;">
                     <fa-icon [icon]="faTrashAlt"></fa-icon> 
                 </a>
             </div>
         </div>
     </li>
 </ul>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Löschen</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Wollen Sie den Raum <b>{{nameforDelete}}</b> wirklich löschen?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="deleteComitted()">Löschen</button>
+    </div>
+  </ng-template>

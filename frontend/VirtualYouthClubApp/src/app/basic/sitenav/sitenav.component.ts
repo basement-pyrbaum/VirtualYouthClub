@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faSearch, faPlus , faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { RoomService } from 'src/app/service/room.service';
 import { StateService } from 'src/app/service/state.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sitenav',
@@ -19,10 +20,12 @@ export class SitenavComponent implements OnInit {
   ycstate = "geschlossen"
   state = false;
   admin = false;
+  idforDelete: String;
+  nameforDelete: String;
 
   rooms = []
 
-  constructor(public roomService: RoomService, public stateService: StateService) {
+  constructor(public roomService: RoomService, public stateService: StateService,private modalService: NgbModal) {
     roomService.getRooms(0,10,"").subscribe( data => {
        this.rooms = data;
     })
@@ -74,8 +77,16 @@ export class SitenavComponent implements OnInit {
 
   }
 
-  deleteRoom(uuid : String){
-    this.roomService.deleteRoom(uuid).subscribe( r => {this.searchfunc()})
+  deleteRoom(content,uuid : String,name: String){
+    this.idforDelete = uuid;
+    this.nameforDelete = name;
+    this.modalService.open(content, {backdropClass: 'light-blue-backdrop'});
+
+  }
+
+  deleteComitted(){
+    this.roomService.deleteRoom(this.idforDelete).subscribe( r => {this.searchfunc()})
+    this.modalService.dismissAll();
   }
 
 }
