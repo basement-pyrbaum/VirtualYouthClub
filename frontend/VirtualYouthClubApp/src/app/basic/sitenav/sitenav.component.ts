@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faSearch, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faPlus , faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { RoomService } from 'src/app/service/room.service';
 import { StateService } from 'src/app/service/state.service';
 
@@ -9,6 +9,7 @@ import { StateService } from 'src/app/service/state.service';
   styleUrls: ['./sitenav.component.css']
 })
 export class SitenavComponent implements OnInit {
+  faTrashAlt = faTrashAlt
   faSearch = faSearch;
   faPlus = faPlus;
   searchText = ""
@@ -71,6 +72,10 @@ export class SitenavComponent implements OnInit {
     this.createRoom = "";
     this.edit = false;
 
+  }
+
+  deleteRoom(uuid : String){
+    this.roomService.deleteRoom(uuid).subscribe( r => {this.searchfunc()})
   }
 
 }

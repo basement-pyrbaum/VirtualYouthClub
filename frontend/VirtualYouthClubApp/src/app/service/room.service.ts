@@ -23,6 +23,12 @@ export class RoomService {
     return this.http.get<Room>(environment.backendUrl+"/rooms/"+uuid)
   }
 
+
+  deleteRoom(uuid: String): Observable<void> {
+    return this.http.delete<void>(environment.backendUrl+"/rooms/"+uuid)
+  }
+
+
   addRoom(name: String): Observable<void> {
     return this.http.post<void>(environment.backendUrl+"/rooms",name)
   }

@@ -70,6 +70,20 @@ public class RoomController {
         }
     }
 
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/rooms/{id}")
+    ResponseEntity<Void> deleteRooms(@PathVariable(value = "id") UUID id){
+        if(!checkService.isAdmin()){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        if(roomService.delete(id)) {
+            return ResponseEntity.ok().build();
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
     @RequestMapping(method = RequestMethod.POST, value = "/rooms")
     ResponseEntity<Void> addRoom(@RequestBody @Pattern(message = "NotAllowed", regexp = "[1-9A-Za-z_-]{1,20}") String name){
         if(!checkService.isAdmin()){

@@ -1,23 +1,27 @@
-<div id="results" class="card mx-auto" >
+<div id="results" class="card mx-auto">
     <div class="card-header">
         <div class="search">
             <div id="searchpos">
                 <fa-icon [icon]="faSearch"></fa-icon>
             </div>
-            <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Search" id="searchInput" name="search" (keyup.enter)="searchfunc()">
+            <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Search" id="searchInput"
+                name="search" (keyup.enter)="searchfunc()">
         </div>
         <div style="padding-top: 10px;" *ngIf="hasPermission">
-           <a href="javascript:void(0);" (click)="showRoom()"><fa-icon [icon]="faPlus"></fa-icon> &nbsp; Raum anlegen</a> 
+            <a href="javascript:void(0);" (click)="showRoom()">
+                <fa-icon [icon]="faPlus"></fa-icon> &nbsp; Raum anlegen
+            </a>
         </div>
-        
+
     </div>
 </div>
 
-<div id="add" class="card mx-auto" *ngIf="edit" >
+<div id="add" class="card mx-auto" *ngIf="edit">
     <div class="card-header">
         <div class="room">
             <label for="addRoom">Raum erstellen</label>
-            <input [(ngModel)]="createRoom" type="text" class="form-control" placeholder="Raum23" id="addRoom" name="addRoom" (keyup.enter)="addRoom()">
+            <input [(ngModel)]="createRoom" type="text" class="form-control" placeholder="Raum23" id="addRoom"
+                name="addRoom" (keyup.enter)="addRoom()">
         </div>
     </div>
 </div>
@@ -25,10 +29,12 @@
 
 <div id="admin" class="card mx-auto" *ngIf="admin">
     <div class="card-header">
-        <button (click)="changeState()" *ngIf="state" type="button" class="btn btn-success" style="width: 100%;">Geöffnet</button>
-        <button (click)="changeState()" *ngIf="!state" type="button" class="btn btn-danger" style="width: 100%;">Geschlossen</button>
+        <button (click)="changeState()" *ngIf="state" type="button" class="btn btn-success"
+            style="width: 100%;">Geöffnet</button>
+        <button (click)="changeState()" *ngIf="!state" type="button" class="btn btn-danger"
+            style="width: 100%;">Geschlossen</button>
 
-<!--<div class="custom-control custom-switch">
+        <!--<div class="custom-control custom-switch">
             <input (click)="changeState()"  type="checkbox" class="xcustom-control-input" id="customSwitches">
             <label class="custom-control-label" for="customSwitches">Jugentreff {{ycstate}}</label>
           </div>-->
@@ -39,9 +45,24 @@
 
 
 
-<ul class="list-group" >
+<ul *ngIf="!hasPermission" class="list-group">
     <a *ngFor="let room of rooms" href="room/{{room.id}}">
         <li class="list-group-item">{{room.name}}</li>
     </a>
-    
+</ul>
+
+
+<ul *ngIf="hasPermission" class="list-group">
+    <li *ngFor="let room of rooms" class="list-group-item">
+        <div class="container" style="width: 100%;">
+            <div class="row" style="width: 100%;">
+                <a href="room/{{room.id}}" style="width: 75%;">
+                        {{room.name}}
+                </a>
+                <a (click)="deleteRoom(room.id)" style="width: 25%; text-align: right;">
+                    <fa-icon [icon]="faTrashAlt"></fa-icon> 
+                </a>
+            </div>
+        </div>
+    </li>
 </ul>

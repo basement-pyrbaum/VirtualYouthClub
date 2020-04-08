@@ -31,20 +31,19 @@ public class RoomService {
         }
     }
 
-    @PostConstruct
-    public void defaultData(){
-        roomRepository.deleteAll();
-        if(roomRepository.count() == 0){
-            roomRepository.save(new Room(UUID.randomUUID(),"Public"));
-        }
-    }
-
-
     public Optional<Room> getRoom(UUID id) {
         return roomRepository.findById(id);
     }
 
     public void addRoom(String name) {
         roomRepository.save(new Room(UUID.randomUUID(),name));
+    }
+
+    public boolean delete(UUID id) {
+        if(roomRepository.existsById(id)){
+            roomRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
