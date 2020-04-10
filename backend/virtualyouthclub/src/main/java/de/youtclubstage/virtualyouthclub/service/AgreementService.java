@@ -2,7 +2,6 @@ package de.youtclubstage.virtualyouthclub.service;
 
 import de.youtclubstage.virtualyouthclub.entity.Agreement;
 import de.youtclubstage.virtualyouthclub.repository.AgreementRepository;
-import org.graalvm.compiler.serviceprovider.ServiceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;

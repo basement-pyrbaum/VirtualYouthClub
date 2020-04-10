@@ -1,0 +1,27 @@
+<div class="context p-2" style="width: 100%;">
+    <div class="card mx-auto " style="max-width: 600px; ">
+        <div class="card-header ">
+            <h1>
+                Nachrichten
+            </h1>
+        </div>
+        <ul class="list-group">
+            <li *ngFor="let message of messages" class="list-group-item">
+                <div class="container" style="width: 100%;">
+                    <div class="row" style="width: 100%;">
+                        <a href="messages/{{message.id}}" style="width: 75%;">
+                           <p><span *ngIf="!message.read" class="badge badge-secondary">Ungelesen</span> <br>
+                            {{message.createDate}}<br>
+                            Absender: {{message.from}}<br>
+                            Betreff: {{message.subject}}</p>
+                        </a>
+                        <a (click)="delete(message.id)" style="width: 25%; text-align: right;">
+                            <fa-icon [icon]="faTrashAlt"></fa-icon>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>

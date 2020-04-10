@@ -10,7 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./sitenav.component.css']
 })
 export class SitenavComponent implements OnInit {
-  faTrashAlt = faTrashAlt
+  faTrashAlt = faTrashAlt;
   faSearch = faSearch;
   faPlus = faPlus;
   searchText = ""

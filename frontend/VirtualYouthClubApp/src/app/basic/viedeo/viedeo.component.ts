@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import '../../../vendor/jitsi/external_api.js';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { RoomService } from 'src/app/service/room.service.js';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 declare var JitsiMeetExternalAPI: any;
 
@@ -11,8 +12,7 @@ declare var JitsiMeetExternalAPI: any;
   styleUrls: ['./viedeo.component.css']
 })
 export class ViedeoComponent implements OnInit {
-
-
+  faEnvelope = faEnvelope
   @ViewChild('meet') elementView: ElementRef;
   @Input() room;
   @Input() password;

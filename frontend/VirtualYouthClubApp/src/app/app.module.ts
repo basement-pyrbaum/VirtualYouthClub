@@ -24,6 +24,10 @@ import { ErrorComponent } from './site/error/error.component';
 import { AgreementComponent } from './site/agreement/agreement.component';
 import { KniggeComponent } from './site/knigge/knigge.component';
 import { KniggeTextComponent } from './basic/knigge-text/knigge-text.component';
+import { ComplaintComponent } from './site/complaint/complaint.component';
+import { MessageCountComponent } from './basic/message-count/message-count.component';
+import { MessagesComponent } from './site/messages/messages.component';
+import { MessagesDetailComponent } from './site/messages-detail/messages-detail.component';
 
 
 @NgModule({
@@ -43,7 +47,11 @@ import { KniggeTextComponent } from './basic/knigge-text/knigge-text.component';
     ErrorComponent,
     AgreementComponent,
     KniggeComponent,
-    KniggeTextComponent
+    KniggeTextComponent,
+    ComplaintComponent,
+    MessageCountComponent,
+    MessagesComponent,
+    MessagesDetailComponent
   ],
   imports: [
     OAuthModule.forRoot({

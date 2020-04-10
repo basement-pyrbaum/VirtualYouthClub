@@ -3,6 +3,8 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { RoomService } from 'src/app/service/room.service';
 import { interval, Subscription } from 'rxjs';
 import { StateService } from 'src/app/service/state.service';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-room',
@@ -10,7 +12,7 @@ import { StateService } from 'src/app/service/state.service';
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit {
-
+  faEnvelope = faEnvelope;
   public isCollapsed = false;
   isStartRoom = true;
   room = "";

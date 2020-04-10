@@ -1,0 +1,50 @@
+<div class="context p-2" style="width: 100%;">
+    <div class="card mx-auto " style="max-width: 600px; ">
+        <div class="card-header ">
+            <h1>
+                Team kontaktieren
+            </h1>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <label for="subjet">Betreff:</label>
+                    <input type="subjet" class="form-control" [(ngModel)]="model.subject" name="subject" id="subject"
+                        aria-describedby="emailHelp" placeholder="Einen Betreff eingeben"  #subject="ngModel" required minlength="1">
+                </div>
+                <div *ngIf="subject.invalid && (subject.dirty || subject.touched)" class="alert alert-danger">
+                    <div *ngIf="subject.errors.required">
+                        Betreff muss angegeben werden
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <label for="message">Nachricht:</label>
+                        <textarea class="form-control" [(ngModel)]="model.message" name="message" id="message"
+                            rows="10"  #message="ngModel" required minlength="1"></textarea>
+                    </div>
+                    <div *ngIf="message.invalid && (message.dirty || message.touched)" class="alert alert-danger">
+                        <div *ngIf="message.errors.required">
+                            Nachricht muss angegeben werden
+                        </div>
+                    </div>
+
+                    <button [disabled]="subject.invalid || message.invalid " type="submit" class="btn btn-primary" (click)="submit(content)">Absenden</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Die Nachricht wurde versendet</h4>
+    </div>
+    <div class="modal-body">
+        <p>Die Nachricht wurde erfolgreich versendet. Wir werden uns schnellstmöglich darum kümmern</p>
+        <br>
+        <p>Euer Basement-Team</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" (click)="ok()">Ok</button>
+    </div>
+</ng-template>

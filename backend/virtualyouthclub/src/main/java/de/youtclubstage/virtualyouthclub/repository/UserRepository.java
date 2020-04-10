@@ -1,8 +1,8 @@
-package de.youtclubstage.virtualyouthclub.entity;
+package de.youtclubstage.virtualyouthclub.repository;
 
+import de.youtclubstage.virtualyouthclub.entity.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import java.util.UUID;
 
-import javax.management.modelmbean.ModelMBean;
-
-public interface UserRepository extends MongoRepository<User,UUID> {
+public interface UserRepository extends MongoRepository<User, UUID> {
 }
