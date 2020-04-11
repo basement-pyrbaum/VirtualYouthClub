@@ -30,7 +30,8 @@ export class AppComponent {
   getConfig():AuthConfig{
     const config = new AuthConfig();
     config.loginUrl = 'https://auth.youthclubstage.de/auth/realms/ycspublic/protocol/openid-connect/auth';
-    config.redirectUri = window.location.origin+'/room/start';
+    config.postLogoutRedirectUri = window.location.origin;
+    config.redirectUri = window.location.origin+'/loginsuccess';
     config.clientId = 'virtualrooms';
     config.scope = 'profile';
     config.tokenEndpoint = 'https://auth.youthclubstage.de/auth/realms/ycspublic/protocol/openid-connect/token';

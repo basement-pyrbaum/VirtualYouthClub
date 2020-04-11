@@ -13,6 +13,7 @@ import { KniggeComponent } from './site/knigge/knigge.component';
 import { ComplaintComponent } from './site/complaint/complaint.component';
 import { MessagesComponent } from './site/messages/messages.component';
 import { MessagesDetailComponent } from './site/messages-detail/messages-detail.component';
+import { LoginsuccessComponent } from './site/loginsuccess/loginsuccess.component';
 
 
 const routes: Routes = [  
@@ -22,6 +23,7 @@ const routes: Routes = [
 { path: 'closed', component:  ClosedComponent},
 { path: 'knigge', component:  KniggeComponent},
 { path: 'error', component:  ErrorComponent},
+{ path: 'loginsuccess', component:  LoginsuccessComponent},
 { path: 'agreement', component:  AgreementComponent},
 { path: 'room/:id', component:  RoomComponent, canActivate: [OpenGuardService] },
 { path: 'complaint', component:  ComplaintComponent, canActivate: [OpenGuardService] },

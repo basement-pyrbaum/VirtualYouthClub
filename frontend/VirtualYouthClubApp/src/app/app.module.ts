@@ -28,6 +28,7 @@ import { ComplaintComponent } from './site/complaint/complaint.component';
 import { MessageCountComponent } from './basic/message-count/message-count.component';
 import { MessagesComponent } from './site/messages/messages.component';
 import { MessagesDetailComponent } from './site/messages-detail/messages-detail.component';
+import { LoginsuccessComponent } from './site/loginsuccess/loginsuccess.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { MessagesDetailComponent } from './site/messages-detail/messages-detail.
     ComplaintComponent,
     MessageCountComponent,
     MessagesComponent,
-    MessagesDetailComponent
+    MessagesDetailComponent,
+    LoginsuccessComponent
   ],
   imports: [
     OAuthModule.forRoot({
