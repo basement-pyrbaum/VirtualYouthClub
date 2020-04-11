@@ -11,9 +11,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {// @formatter:off
         http.cors()
                 .and()
-                .authorizeRequests()
-                .anyRequest()
-                .authenticated()
+                .authorizeRequests(a -> a
+                        .antMatchers("/api/public/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .exceptionHandling()
                 .and()
                 .oauth2ResourceServer().jwt();
     }//@formatter:on

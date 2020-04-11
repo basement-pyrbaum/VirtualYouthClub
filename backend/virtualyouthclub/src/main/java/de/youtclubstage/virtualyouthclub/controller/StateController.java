@@ -30,10 +30,11 @@ public class StateController {
         this.agreementService = agreementService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/state",produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, value={"/state","/public/state"},produces = "application/json")
     ResponseEntity<Boolean> isOpen(){
         return ResponseEntity.ok(stateService.isOpen());
     }
+
 
     @RequestMapping(method = RequestMethod.GET, value="/extendedState",produces = "application/json")
     ResponseEntity<StateDto> isOpenOrAdmin(){

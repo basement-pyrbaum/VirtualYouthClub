@@ -19,6 +19,10 @@ export class StateService {
     return this.http.get<boolean>(environment.backendUrl+"/state")
   }
 
+  isOpenPublic(): Observable<boolean> {
+    return this.http.get<boolean>(environment.backendUrl+"/public/state")
+  }
+
   isAdmin(): Observable<boolean> {
     return this.http.get<boolean>(environment.backendUrl+"/admin")
   }
