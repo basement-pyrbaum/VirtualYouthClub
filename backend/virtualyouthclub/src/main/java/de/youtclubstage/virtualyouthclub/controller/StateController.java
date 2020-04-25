@@ -2,6 +2,8 @@ package de.youtclubstage.virtualyouthclub.controller;
 
 import de.youtclubstage.virtualyouthclub.controller.model.StateDto;
 import de.youtclubstage.virtualyouthclub.entity.Agreement;
+import de.youtclubstage.virtualyouthclub.security.AdminType;
+import de.youtclubstage.virtualyouthclub.security.SecurityAnotation;
 import de.youtclubstage.virtualyouthclub.service.AgreementService;
 import de.youtclubstage.virtualyouthclub.service.CheckService;
 import de.youtclubstage.virtualyouthclub.service.StateService;
@@ -53,6 +55,7 @@ public class StateController {
     }
 
 
+    @SecurityAnotation(adminType = {AdminType.ADMIN})
     @RequestMapping(method = RequestMethod.POST, value="/state")
     ResponseEntity<Void> isOpen(@RequestBody boolean open){
         if(!checkService.isAdmin()){
