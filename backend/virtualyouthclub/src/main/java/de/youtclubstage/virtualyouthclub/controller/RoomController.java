@@ -4,7 +4,6 @@ import de.youtclubstage.virtualyouthclub.entity.Room;
 import de.youtclubstage.virtualyouthclub.security.SecurityAnotation;
 import de.youtclubstage.virtualyouthclub.security.SecurityService;
 import de.youtclubstage.virtualyouthclub.security.UserType;
-import de.youtclubstage.virtualyouthclub.service.CheckService;
 import de.youtclubstage.virtualyouthclub.service.RoomService;
 import de.youtclubstage.virtualyouthclub.service.StateService;
 import lombok.extern.slf4j.Slf4j;
@@ -12,12 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
-
 
 import javax.validation.constraints.Pattern;
 import java.util.List;

@@ -6,8 +6,8 @@ import de.youtclubstage.virtualyouthclub.controller.model.MessageDTO;
 import de.youtclubstage.virtualyouthclub.controller.model.MessageDetailDto;
 import de.youtclubstage.virtualyouthclub.entity.User;
 import de.youtclubstage.virtualyouthclub.entity.UserMessage;
-import de.youtclubstage.virtualyouthclub.repository.UserRepository;
 import de.youtclubstage.virtualyouthclub.repository.MessageRepository;
+import de.youtclubstage.virtualyouthclub.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
