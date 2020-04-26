@@ -42,7 +42,12 @@ public class SecurityService {
     }
 
     public boolean isValidUserAndOpenOrAdmin(){
-        return (hasRole(USER_ROLE) && agreementService.hasAgreement() && stateService.isOpen())|| hasRole(ADMIN_ROLE);
+        return (hasRole(USER_ROLE) &&
+                stateService.isOpen())|| hasRole(ADMIN_ROLE);
+    }
+
+    public boolean hasUserAgreement(){
+        return  hasRole(ADMIN_ROLE) || agreementService.hasAgreement();
     }
 
     public boolean isAdmin(){
@@ -70,4 +75,7 @@ public class SecurityService {
     }
 
 
+    public boolean isValidUserAndOpenOrAdminByGroup(Long groupId) {
+        return true;
+    }
 }

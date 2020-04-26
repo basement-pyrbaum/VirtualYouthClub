@@ -3,6 +3,8 @@ package de.youtclubstage.virtualyouthclub.controller;
 import de.youtclubstage.virtualyouthclub.controller.model.CreateComplaintDto;
 import de.youtclubstage.virtualyouthclub.controller.model.MessageDTO;
 import de.youtclubstage.virtualyouthclub.controller.model.MessageDetailDto;
+import de.youtclubstage.virtualyouthclub.security.SecurityAnotation;
+import de.youtclubstage.virtualyouthclub.security.UserType;
 import de.youtclubstage.virtualyouthclub.service.CheckService;
 import de.youtclubstage.virtualyouthclub.service.ComplaintService;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +30,7 @@ public class ComplaintController {
         this.checkService = checkService;
     }
 
+    @SecurityAnotation
     @RequestMapping(method = RequestMethod.POST, value="/complaints")
     ResponseEntity<Void> createComplaint(@RequestBody CreateComplaintDto createComplaintDto){
         complaintService.createComplaint(createComplaintDto);
@@ -35,38 +38,30 @@ public class ComplaintController {
     }
 
 
+    @SecurityAnotation(adminType = {UserType.ADMIN})
     @RequestMapping(method = RequestMethod.GET, value="/complaints/unread", produces = "application/json")
     ResponseEntity<Long> getUnread(){
-        if(!checkService.isAdmin()){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
         return ResponseEntity.ok(complaintService.getUnreadComplains());
     }
 
+    @SecurityAnotation(adminType = {UserType.ADMIN})
     @RequestMapping(method = RequestMethod.GET, value="/complaints", produces = "application/json")
     ResponseEntity<Page<MessageDTO>> getComplaints(Pageable pageable){
-        if(!checkService.isAdmin()){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
         Page<MessageDTO>  data = complaintService.getComplaint(pageable);
         return ResponseEntity.ok(data);
     }
 
+    @SecurityAnotation(adminType = {UserType.ADMIN})
     @RequestMapping(method = RequestMethod.GET, value="/complaints/{id}",produces = "application/json")
     ResponseEntity<MessageDetailDto> getComplaint(@PathVariable("id") UUID id){
-        if(!checkService.isAdmin()){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
         Optional<MessageDetailDto> data = complaintService.getComplaint(id);
-        return data.map(messageDetailDto -> ResponseEntity.ok(messageDetailDto))
+        return data.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @SecurityAnotation(adminType = {UserType.ADMIN})
     @RequestMapping(method = RequestMethod.DELETE, value="/complaints/{id}")
     ResponseEntity<Void> deleteComplaint(@PathVariable("id") UUID id){
-        if(!checkService.isAdmin()){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
         if(complaintService.deleteComplaint(id)){
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }else{

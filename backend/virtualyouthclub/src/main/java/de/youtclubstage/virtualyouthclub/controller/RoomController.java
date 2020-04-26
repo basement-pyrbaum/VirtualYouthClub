@@ -1,6 +1,9 @@
 package de.youtclubstage.virtualyouthclub.controller;
 
 import de.youtclubstage.virtualyouthclub.entity.Room;
+import de.youtclubstage.virtualyouthclub.security.SecurityAnotation;
+import de.youtclubstage.virtualyouthclub.security.SecurityService;
+import de.youtclubstage.virtualyouthclub.security.UserType;
 import de.youtclubstage.virtualyouthclub.service.CheckService;
 import de.youtclubstage.virtualyouthclub.service.RoomService;
 import de.youtclubstage.virtualyouthclub.service.StateService;
@@ -28,27 +31,21 @@ public class RoomController {
 
     private final RoomService roomService;
     private final StateService stateService;
-    private final CheckService checkService;
+    private final SecurityService securityService;
 
     @Autowired
     public RoomController(RoomService roomService,
                           StateService stateService,
-                          CheckService checkService){
+                          SecurityService securityService){
         this.roomService = roomService;
         this.stateService = stateService;
-        this.checkService = checkService;
+        this.securityService = securityService;
     }
 
 
-
+    @SecurityAnotation(openCheck = true, agreementCheck = true)
     @RequestMapping(method = RequestMethod.GET, value = "/rooms", produces = "application/json")
     ResponseEntity<List<Room>> getRooms(@RequestParam(value = "search", required = false) String search, Pageable page){
-        if(!checkService.isValidUserAndOpenOrAdmin()){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-
-        log.error(SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString());
-
         Page<Room> rooms = roomService.getRooms(search,page);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("totalItems",
@@ -56,26 +53,16 @@ public class RoomController {
         return ResponseEntity.ok().headers(responseHeaders).body(rooms.getContent());
     }
 
+    @SecurityAnotation(openCheck = true, agreementCheck = true)
     @RequestMapping(method = RequestMethod.GET, value = "/rooms/{id}", produces = "application/json")
     ResponseEntity<Room> getRooms(@PathVariable(value = "id") UUID id){
-        if(!checkService.isValidUserAndOpenOrAdmin()){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-
         Optional<Room> room = roomService.getRoom(id);
-        if(room.isPresent()) {
-            return ResponseEntity.ok().body(room.get());
-        }else{
-            return ResponseEntity.notFound().build();
-        }
+        return room.map(value -> ResponseEntity.ok().body(value)).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-
+    @SecurityAnotation(adminType = {UserType.ADMIN})
     @RequestMapping(method = RequestMethod.DELETE, value = "/rooms/{id}")
     ResponseEntity<Void> deleteRooms(@PathVariable(value = "id") UUID id){
-        if(!checkService.isAdmin()){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
         if(roomService.delete(id)) {
             return ResponseEntity.ok().build();
         }else{
@@ -83,20 +70,17 @@ public class RoomController {
         }
     }
 
-
+    @SecurityAnotation(adminType = {UserType.ADMIN})
     @RequestMapping(method = RequestMethod.POST, value = "/rooms")
     ResponseEntity<Void> addRoom(@RequestBody @Pattern(message = "NotAllowed", regexp = "[1-9A-Za-z_-]{1,20}") String name){
-        if(!checkService.isAdmin()){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
         roomService.addRoom(name);
         return ResponseEntity.ok().build();
         }
 
-
+    @SecurityAnotation
     @RequestMapping(method = RequestMethod.GET, value = "/permission/add/rooms", produces = "application/json")
     ResponseEntity<Boolean> hasPermissionCreateRooms(){
-        return ResponseEntity.ok(checkService.isAdmin());
+        return ResponseEntity.ok(securityService.isAdmin());
     }
 
 

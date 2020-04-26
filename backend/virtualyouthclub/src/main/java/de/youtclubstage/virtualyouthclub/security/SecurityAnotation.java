@@ -8,6 +8,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface SecurityAnotation {
-    AdminType[] adminType() default {AdminType.USER};
+    UserType[] adminType() default {UserType.USER};
     boolean openCheck() default false;
+    boolean agreementCheck() default false;
+    OrgType orgType() default OrgType.PUBLIC;
 }
