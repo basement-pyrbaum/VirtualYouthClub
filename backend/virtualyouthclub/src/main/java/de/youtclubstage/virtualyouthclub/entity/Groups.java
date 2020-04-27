@@ -4,19 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.TextIndexed;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Room {
+public class Groups {
     @Id
-    private UUID id = UUID.randomUUID();
+    private UUID id;
 
-    @TextIndexed
-    private String name;
+    private String groupName;
 
-    private UUID group;
+    private List<UUID> groupAdmins = new ArrayList<>();
+
+    private boolean isOpen = false;
 }
