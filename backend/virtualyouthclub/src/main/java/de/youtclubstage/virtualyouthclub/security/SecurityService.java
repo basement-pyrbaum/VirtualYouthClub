@@ -1,5 +1,7 @@
 package de.youtclubstage.virtualyouthclub.security;
 
+import de.youtclubstage.virtualyouthclub.entity.User;
+import de.youtclubstage.virtualyouthclub.repository.UserRepository;
 import de.youtclubstage.virtualyouthclub.service.AgreementService;
 import de.youtclubstage.virtualyouthclub.service.CheckService;
 import de.youtclubstage.virtualyouthclub.service.StateService;
@@ -10,6 +12,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -19,18 +22,26 @@ public class SecurityService {
 
     private final AgreementService agreementService;
     private final StateService stateService;
+    private final UserRepository userRepository;
 
     private final CheckService checkService;
 
     @Autowired
-    public SecurityService(AgreementService agreementService, StateService stateService, CheckService checkService) {
+    public SecurityService(AgreementService agreementService, StateService stateService, UserRepository userRepository, CheckService checkService) {
         this.agreementService = agreementService;
         this.stateService = stateService;
+        this.userRepository = userRepository;
         this.checkService = checkService;
     }
 
+
+
     public boolean hasRole(String role){
         Jwt jwt = (Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UUID id = UUID.fromString(jwt.getClaimAsString("sub"));
+        if(!userRepository.existsById(id)) {
+            userRepository.save(new User(id, jwt.getClaimAsString("email")));
+        }
         List<String> roles = jwt.getClaimAsStringList("groups");
         if(roles != null && roles.contains(role)){
             return true;

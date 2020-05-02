@@ -29,6 +29,7 @@ import { MessageCountComponent } from './basic/message-count/message-count.compo
 import { MessagesComponent } from './site/messages/messages.component';
 import { MessagesDetailComponent } from './site/messages-detail/messages-detail.component';
 import { LoginsuccessComponent } from './site/loginsuccess/loginsuccess.component';
+import { GroupMenuComponent } from './basic/group-menu/group-menu.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { LoginsuccessComponent } from './site/loginsuccess/loginsuccess.componen
     MessageCountComponent,
     MessagesComponent,
     MessagesDetailComponent,
-    LoginsuccessComponent
+    LoginsuccessComponent,
+    GroupMenuComponent
   ],
   imports: [
     OAuthModule.forRoot({
