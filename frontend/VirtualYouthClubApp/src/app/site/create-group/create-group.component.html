@@ -1,0 +1,60 @@
+<div class="p-2" style="width: 100%;">
+    <div class="card mx-auto">
+      <div class="card-header">
+        <h1>
+          Gruppe anlegen
+        </h1>
+      </div>
+  
+      <div class="card-body mx-center">
+        <form>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter name">
+            </div>
+
+            <div class="form-group">
+                <label for="users">Admin</label><br>
+                <span *ngFor="let user of chooseUsers">
+                <span class="badge badge-secondary" >{{user.email}}
+                    &nbsp;<a (click)="deleteUser(user)"><span class="badge badge-danger">x</span></a></span>&nbsp;&nbsp;
+                </span>
+              </div>
+
+
+
+            <div id="results" class="card mx-auto">
+                <div class="card-header">
+                    <h2>Admin auswählen</h2>
+                    <div class="search">
+                        <div id="searchpos">
+                            <fa-icon [icon]="faSearch"></fa-icon>
+                        </div>
+                        <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Search" id="searchInput"
+                            name="search" (keyup.enter)="searchfunc()">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <a *ngFor="let user of users">
+                            <li class="list-group-item">{{user.email}}&nbsp;&nbsp;
+                                <a *ngIf="!isChoose(user)" (click)="addUser(user)">
+                                    <span class="badge badge-secondary">
+                                        <fa-icon [icon]="faPlus"></fa-icon>
+                                    </span> 
+                                </a>
+                                <span *ngIf="isChoose(user)" class="badge badge-warning">ausgewählt</span>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
+    </div>
+  </div>

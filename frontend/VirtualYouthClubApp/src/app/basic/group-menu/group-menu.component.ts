@@ -11,7 +11,7 @@ export class GroupMenuComponent implements OnInit {
   isAdmin = false;
 
 
-  constructor(private oauthService: OAuthService, private complaintService: ComplaintService) {
+  constructor(private oauthService: OAuthService) {
     if (this.oauthService.hasValidAccessToken()) {
       this.isAdmin = this.oauthService.getIdentityClaims()['groups'].includes("admin");
     }

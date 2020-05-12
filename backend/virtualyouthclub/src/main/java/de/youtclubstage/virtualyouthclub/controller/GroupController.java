@@ -37,7 +37,7 @@ public class GroupController {
 
     @SecurityAnotation( adminType = { UserType.ADMIN })
     @RequestMapping(method = RequestMethod.POST, value="/groups")
-    ResponseEntity<Void> isOpen(@RequestBody CreateGroup createGroup){
+    ResponseEntity<Void> createGroup(@RequestBody CreateGroup createGroup){
         groupService.add(createGroup);
         return ResponseEntity.ok().build();
     }

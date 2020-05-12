@@ -1,1 +1,8 @@
-<p>group-menu works!</p>
+<li *ngIf="isAdmin" ngbDropdown class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle"  role="button" ngbDropdownToggle aria-haspopup="true"
+        aria-expanded="false">Groups</a>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem>Action - 1</button>
+        <a href="/create-group" *ngIf="isAdmin" ngbDropdownItem>Add Group</a>
+    </div>
+</li>

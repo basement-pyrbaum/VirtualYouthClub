@@ -14,6 +14,7 @@ import { ComplaintComponent } from './site/complaint/complaint.component';
 import { MessagesComponent } from './site/messages/messages.component';
 import { MessagesDetailComponent } from './site/messages-detail/messages-detail.component';
 import { LoginsuccessComponent } from './site/loginsuccess/loginsuccess.component';
+import { CreateGroupComponent } from './site/create-group/create-group.component';
 
 
 const routes: Routes = [  
@@ -29,6 +30,7 @@ const routes: Routes = [
 { path: 'complaint', component:  ComplaintComponent, canActivate: [OpenGuardService] },
 { path: 'messages', component:  MessagesComponent, canActivate: [OpenGuardService] },
 { path: 'messages/:id', component:  MessagesDetailComponent, canActivate: [OpenGuardService] },
+{ path: 'create-group', component:  CreateGroupComponent, canActivate: [OpenGuardService] },
 { path: '',  redirectTo: '/main',  pathMatch: 'full'},];
 
 @NgModule({

@@ -1,0 +1,9 @@
+
+.search { position: relative; }
+.search input { text-indent: 30px;}
+#searchpos{ 
+  position: absolute;
+  top: 12px;
+  left: 7px;
+  font-size: 15px;
+}
